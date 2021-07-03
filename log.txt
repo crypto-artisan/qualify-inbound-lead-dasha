@@ -1,0 +1,378 @@
+####################################################################################################
+ai: Hi John this is Dasha with Acme Software. I just received a request for a demo from you. Do you have two minutes now? 
+[
+  {
+    "type": "Intent",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.99154,
+    "likelihood": 1,
+    "location": {
+      "start": -1,
+      "end": -1
+    },
+    "intent": "yes",
+    "state": "positive",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "positive",
+    "sentenceType": "statement"
+  }
+]
+human: yes
+ai: Great! I will book you in for a discovery call with an account executive but first, I'll have to ask you a couple of questions . Question 1 - are you using any other software at the moment that solve for invoicing?
+[
+  {
+    "type": "Intent",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.95575,
+    "likelihood": 1,
+    "location": {
+      "start": -1,
+      "end": -1
+    },
+    "intent": "no",
+    "state": "positive",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.29355,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 2
+    },
+    "factType": "software",
+    "data": {
+      "value": "no"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "negative",
+    "sentenceType": "statement"
+  }
+]
+human: no 
+ai: Thank you for that. Question 2 - how many invoices per month do you generally issue?
+[
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.40608,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 2
+    },
+    "factType": "software",
+    "data": {
+      "value": "33"
+    }
+  },
+  {
+    "type": "Data",
+    "skill": "common-numbers",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "factType": "numberword",
+    "data": {
+      "value": "33"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "neutral",
+    "sentenceType": "statement"
+  }
+]
+human: 33
+ai: Thank you. And final question - how did you find out about us?
+[
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.38663,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 6
+    },
+    "factType": "channel",
+    "data": {
+      "value": "Google"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "neutral",
+    "sentenceType": "statement"
+  }
+]
+human: google
+ai: Great, thank you for your replies. Now, let's find a time to meet. When are you available for a 30 minute call this week?
+[
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.48095,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 7
+    },
+    "factType": "callday",
+    "data": {
+      "value": "Tuesday"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 2
+    },
+    "intent": null,
+    "state": "neutral",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Intent",
+    "skill": "common_phrases",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 1,
+      "end": 2
+    },
+    "intent": "potential_call_later",
+    "state": "positive",
+    "sentenceType": "request"
+  },
+  {
+    "type": "Data",
+    "skill": "common-numbers",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 2,
+      "end": 2
+    },
+    "factType": "numberword",
+    "data": {
+      "value": "3"
+    }
+  }
+]
+human: tuesday at 3
+ai: Perfect. Let's confirm, you can take a call on 
+ai: Tuesday
+ai:  at 
+ai: 3
+ai:  is that right?
+[
+  {
+    "type": "Intent",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.95575,
+    "likelihood": 1,
+    "location": {
+      "start": -1,
+      "end": -1
+    },
+    "intent": "no",
+    "state": "positive",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.29355,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 2
+    },
+    "factType": "software",
+    "data": {
+      "value": "no"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "negative",
+    "sentenceType": "statement"
+  }
+]
+human: no
+ai: Let's try this again. What time can you meet with the A. E. this week?
+[
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.66485,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 9
+    },
+    "factType": "callday",
+    "data": {
+      "value": "tusday at"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 2
+    },
+    "intent": null,
+    "state": "neutral",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Intent",
+    "skill": "common_phrases",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 1,
+      "end": 2
+    },
+    "intent": "potential_call_later",
+    "state": "positive",
+    "sentenceType": "request"
+  },
+  {
+    "type": "Data",
+    "skill": "common-numbers",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 2,
+      "end": 2
+    },
+    "factType": "numberword",
+    "data": {
+      "value": "2"
+    }
+  },
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.73884,
+    "likelihood": 1,
+    "location": {
+      "start": 10,
+      "end": 11
+    },
+    "factType": "callback",
+    "data": {
+      "value": "2 pm"
+    }
+  }
+]
+human: tusday at 2
+ai: Perfect. Let's confirm, you can take a call on 
+ai: tusday at
+ai:  at 
+ai: 2
+ai:  is that right?
+[
+  {
+    "type": "Intent",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.93519,
+    "likelihood": 1,
+    "location": {
+      "start": -1,
+      "end": -1
+    },
+    "intent": "yes",
+    "state": "positive",
+    "sentenceType": "statement"
+  },
+  {
+    "type": "Data",
+    "skill": "db01c89ff02a6c97353f1bff31584007",
+    "weight": 0.28237,
+    "likelihood": 1,
+    "location": {
+      "start": 0,
+      "end": 4
+    },
+    "factType": "software",
+    "data": {
+      "value": "\\yes"
+    }
+  },
+  {
+    "type": "Intent",
+    "skill": "sentiment",
+    "weight": -1,
+    "likelihood": -1,
+    "location": {
+      "start": 0,
+      "end": 0
+    },
+    "intent": null,
+    "state": "positive",
+    "sentenceType": "statement"
+  }
+]
+human: \yes
+ai: Perfect. You will have an invite later today. Thank you so much! We'll speak soon! Bye!
