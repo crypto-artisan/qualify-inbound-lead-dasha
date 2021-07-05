@@ -7,12 +7,13 @@ context
     input phone: string;
     input name: string = "";
 
-    software: {[x:string]:string;}[]?=null;
-    invoices: {[x:string]:string;}[]?=null;
-    lead_source: {[x:string]:string;}[]?=null;
-    calltime: {[x:string]:string;}[]?=null;
-    callday: {[x:string]:string;}[]?=null;
-    callback: {[x:string]:string;}[]?=null;
+    software: string = "";
+    invoices: string = "";
+    lead_source: string = "";
+    calltime: string = "";
+    callday: string = "";
+    callback: string = "";
+    
     visitedNodeTime: boolean = false;
     visitedNodeQuestion1: boolean = false;
 }
@@ -27,9 +28,9 @@ start node root
     {
         #preparePhrase("greeting", {name:$name}); 
         #connectSafe($phone);
-        // Wait until 5 seconds passes or speech is detected.
+        // Wait for 5 seconds or until speech is detected.
         #waitForSpeech(5000);
-        #say("greeting", {name: $name});
+        #sayText("Hi " + $name + " this is Dasha with Acme Software. I just received a request for a demo from you. Do you have two minutes now?");
         wait*;
     }
     transitions
@@ -39,12 +40,10 @@ start node root
     }
 }
 
-
 node question_1
 {
     do 
     {
-
         if ($visitedNodeQuestion1==false) #sayText("Great! I will book you in for a discovery call with an account executive but first, I'll have to ask you a couple of questions . Question 1 - are you using any other software at the moment that solve for invoicing?"); 
         else #sayText("Going back to the question 1 - are you using any other software at the moment that solve for invoicing?"); 
         set $visitedNodeQuestion1=true;
@@ -72,7 +71,7 @@ node question_1_a
     onexit
     {
         question_2: do {
-        set $software = #messageGetData("software");
+        set $software = #messageGetData("software", { value: true })[0]?.value??"";
        }
     }
 }
@@ -91,7 +90,7 @@ node question_2
     onexit
     {
         question_3: do {
-        set $invoices = #messageGetData("numberword");
+        set $invoices = #messageGetData("numberword", { value: true })[0]?.value??"";
        }
     }
 }
@@ -110,7 +109,7 @@ node question_3
     onexit
     {
         time: do {
-        set $lead_source = #messageGetData("channel");
+        set $lead_source = #messageGetData("channel", { value: true })[0]?.value??"";
        }
     }
 }
@@ -133,8 +132,8 @@ node time
     {
         time_confirm: do 
     {
-        set $callday = #messageGetData("callday");
-        set $calltime = #messageGetData("numberword");
+        set $callday = #messageGetData("callday", { value: true })[0]?.value??"";
+        set $calltime = #messageGetData("numberword", { value: true })[0]?.value??"";
 
     }
     }
@@ -144,20 +143,7 @@ node time_confirm
 {
     do
     {
-        #sayText("Perfect. Let's confirm, you can take a call on ");
-        var callday = #messageGetData("callday");
-        for (var item in callday)
-            {
-                #sayText(item.value ?? "");
-            }
-        #sayText(" at ");
-        var calltime = #messageGetData("numberword");
-        for (var item in calltime)
-            {
-                #sayText(item.value ?? "");
-            }
-
-        #sayText(" is that right?");
+        #sayText("Perfect. Let's confirm, you can take a call on " + $callday + " at " +$calltime + " is that right?");
         wait *;
     }
      transitions 
@@ -172,7 +158,6 @@ node success
     do 
     {
         #sayText("Perfect. You will have an invite later today. Thank you so much! We'll speak soon! Bye!");
-        #disconnect();
         exit;
     }
 }
@@ -199,7 +184,7 @@ node call_back
     {
         callback_confirm: do 
         {
-        set $callback = #messageGetData("callback");
+        set $callback = #messageGetData("callback", { value: true })[0]?.value??"";
         }
     }
 }
@@ -208,21 +193,13 @@ node callback_confirm
 { 
     do 
     { 
-        #sayText("Perfect. we'll call you back");
-        var callbackday = #messageGetData("callback");
-        for (var item in callbackday)
-            {
-                #sayText(item.value ?? "");
-            }
-        #sayText(". Thanks for your time. Bye! ");
+        #sayText("Perfect. we'll call you back " + $callback + " Thanks for your time. Bye!");
         exit;
     }
 }
 
-
 /**
 Can't talk now flow ends
-
 Digressions begin
 */
 
@@ -246,25 +223,7 @@ digression connect_me
     }
 }
 
-digression who_call 
-{
-    conditions {on #messageHasIntent("who_call");}
-    do 
-    {
-        #sayText("This is Dasha with Acme Software. You reached out to us a few minutes ago on our website.");
-        return;
-    }
-}
 
-digression what_do 
-{
-    conditions {on #messageHasIntent("what_do");}
-    do 
-    {
-        #sayText("Acme Software provides invoicing software as a service for SMB. ");
-        return;
-    }
-}
 
 digression how_do 
 {
@@ -282,7 +241,7 @@ digression transfer_me
     do 
     {
         #sayText("Certainly. Please hold, I will transfer you to an account executive right away. Good bye!");
-        #forward("79231017918");
+        #forward("12223334455");
     }
 }
 
@@ -292,7 +251,6 @@ digression bye
     do 
     {
         #sayText("Thank you for your time. Have a great day. Bye!");
-        #disconnect();
         exit;
     }
 }

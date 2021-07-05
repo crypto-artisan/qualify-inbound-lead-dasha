@@ -1,0 +1,312 @@
+{
+  "version": "v2",
+  "intents": 
+  {
+    "yes": 
+    {
+      "includes": [
+        "yes",
+        "correct",
+        "sure",
+        "absolutely",
+        "yes siree bob",
+        "right",
+        "that's right",
+        "yep",
+        "you got it",
+        "I would",
+        "yeah", 
+        "I would"
+      ],
+      "excludes": [
+        "fuck off"
+      ]
+    },
+    "no": {
+      "includes": [
+        "no",
+        "definitely not",
+        "wrong",
+        "incorrect",
+        "I do not",
+        "I don't",
+        "I would not",
+        "I wouldn't"
+      ],
+      "excludes": [
+    
+      ]
+    },
+    "who_call": 
+    {
+      "includes": [
+        "who is this again?",
+        "who is calling?",
+        "what is this about?",
+        "who are you?"
+      ]
+      },
+    "what_do": {
+      "includes": [
+        "what does your company do?",
+        "what company is this again?",
+        "what do you do?"
+      ]
+    },
+    "how_do": {
+      "includes": [
+        "how are you?",
+        "how is everything?",
+        "you okay?"
+      ]
+    },
+    "transfer_me": {
+      "includes": [
+        "connect me to an AE",
+        "can you transfer me to the account executive now?",
+        "can I speak to the account executive now?",
+        "I'd like to speak to the AE now",
+        "account executive",
+        "A E"
+      ]
+    },
+    "bye": {
+      "includes": [
+        "bye",
+        "good bye",
+        "thanks bye",
+        "nevermind",
+        "forget about it",
+        "we're done",
+        "take it easy",
+        "peace out boo",
+        "peace"
+      ],
+      "excludes": ["hello","hi"]
+    }
+  },
+ 
+  "entities": 
+  {
+    "callday": 
+    {
+      "open_set": true,
+      "values": [
+        {
+          "value": "Monday",
+          "synonyms": ["monday", "Monday", "Lunes", "day one"]
+        },
+        {
+          "value": "Tuesday",
+          "synonyms": ["martes", "tuesday", "Tuesday", "day two"]
+        },
+        {
+          "value": "Wednesday",
+          "synonyms": ["Humpday", "miercoles", "wednesday", "Wednesday"]
+        },
+        {
+          "value": "Thursday",
+          "synonyms": ["jueves", "thursday", "Thursday"]
+        },
+        {
+          "value": "Friday",
+          "synonyms": ["TGIF", "viernes", "friday", "Friday"]
+        }
+      ],
+     "includes": [ 
+      "(Monday)[callday]",
+      "(Tuesday)[callday]",
+      "(Wednesday)[callday]",
+      "(Thursday)[callday]",
+      "(Friday)[callday]",
+      "call me back on (Monday)[callday]",
+      "try me on (Tuesday)[callday]",
+      "let's do (Wednesday)[callday]",
+      "let's talk on (Thursday)[callday]",
+      "let's do (Friday)[callday]"
+      ]
+    },
+    "calltime": 
+    {
+      "open_set": true,
+      "values": [
+        {
+          "value": "9 am",
+          "synonyms": ["9 o'clock", "9 am", "9am", "nine o'clock", "9"]
+        },
+        {
+          "value": "10 am",
+          "synonyms": ["10 o'clock", "10 am", "10am", "ten o'clock", "10"]
+        },
+        {
+          "value": "11 am",
+          "synonyms": ["11 o'clock", "11 am", "11am", "eleven o'clock", "11"]
+        },
+        {
+          "value": "12 pm",
+          "synonyms": ["12 o'clock", "12 pm", "12pm", "twelve o'clock", "12"]
+        },
+        {
+          "value": "1 pm",
+          "synonyms": ["1 o'clock", "1 pm", "1pm", "one o'clock", "1"]
+        },
+        {
+          "value": "2 pm",
+          "synonyms": ["2 o'clock", "2 pm", "2pm", "two o'clock", "2"]
+        },
+        {
+          "value": "3 pm",
+          "synonyms": ["3 o'clock", "3 pm", "3pm", "three o'clock", "3"]
+        },
+        {
+          "value": "4 pm",
+          "synonyms": ["4 o'clock", "4 pm", "4pm", "four o'clock", "4"]
+        },
+        {
+          "value": "5 pm",
+          "synonyms": ["5 o'clock", "5 pm", "5pm", "five o'clock", "5"]
+        }
+      ],
+      "includes": [ 
+        "call me back at [calltime] on [callday]",
+        "call me at [calltime] on [callday]",
+        "let's do [calltime] on [callday]",
+        "[callday] at [calltime]",
+        "[calltime] on [callday]"
+        ]
+    },
+      "callback": 
+      {
+        "open_set": false,
+        "values": [
+          {
+            "value": "tomorrow",
+            "synonyms": ["tomorrow", "next day"]
+          },
+          {
+            "value": "tomorrow at the same time",
+            "synonyms": ["same time tomorrow", "tomorrow same time"]
+          },
+          {
+            "value": "the day after tomorrow",
+            "synonyms": ["In two days", "Day after tomorrow"]
+          },
+          {
+            "value": "in an hour",
+            "synonyms": ["in an hour", "in two hours"]
+          },
+          {
+            "value": "later today",
+            "synonyms": ["later today"]
+          }
+        ],
+       "includes": [
+          "call me back at (tomorrow)[callback]",
+          "call me at [callback]",
+          "let's do [callback]",
+          "call me [callback]",
+          "(tomorrow)[callback]",
+          "(the day after tomorrow)[callback]",
+          "(tomorrow)[callback] is fine"
+        ],
+        "excludes": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ]
+      },
+    "software": 
+    {
+      "open_set": true,
+      "values": [
+        {
+          "value": "Xero",
+          "synonyms": ["Xero"]
+        },
+        {
+          "value": "Quickbooks",
+          "synonyms": ["Quickbooks"]
+        },
+        {
+          "value": "Quicken",
+          "synonyms": ["Quicken"]
+        },
+        {
+          "value": "Stripe",
+          "synonyms": ["Stripe"]
+        },
+        {
+          "value": "Square",
+          "synonyms": ["Square"]
+        }
+      ],
+      "includes": [
+        "we use [software]",
+        "[software]",
+        "just [software]",
+        "we use [software] and [software]",
+        "We use (Quicken)[software]",
+        "We mainly use (Stripe)[software]",
+        "Just (Quickbooks)[software]",
+        "(Square)[software]",
+        "(Xero)[software]",
+        "(Stripe)[software]",
+        "(Quickbooks)[software]",
+        "(Square)[software]",
+        "(Xero)[software]"
+      ]
+    },
+    "channel": 
+    {
+      "open_set": true,
+      "values": [
+        {
+          "value": "Facebook",
+          "synonyms": ["facebook","F.B.", "Facebook"]
+        },
+        {
+          "value": "Google",
+          "synonyms": ["google search", "google", "Google search", "Google"]
+        },
+        {
+          "value": "Forbes",
+          "synonyms": ["Forbes", "forbes"]
+        },
+        {
+          "value": "Techcrunch",
+          "synonyms": ["techcrunch", "Techcrunch"]
+        },
+        {
+          "value": "word of mouth",
+          "synonyms": ["a friend", "word of mouth", "a colleague", "a reference", "someone referred me to you"]
+        }
+      ],
+      "includes": [
+        "(Facebook)[channel]",
+        "(Google)[channel]",
+        "(Forbes)[channel]",
+        "(Techcrunch)[channel]",
+        "(word of mouth)[channel]",
+        "I did a (Google)[channel] and found you guys",
+        "I found you on (Google)[channel]",
+        "I saw you on (Techcrunch)[channel]",
+        "I read about you in (Forbes)[channel]",
+        "a (word of mouth)[channel] told me about you"
+      ],
+        "excludes": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ]
+    }
+  }
+}
