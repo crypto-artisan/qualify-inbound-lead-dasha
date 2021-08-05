@@ -1,19 +1,5 @@
 const dasha = require("@dasha.ai/sdk");
 const fs = require("fs");
-const sqlite3 = require('sqlite3').verbose();
-
-/**
-let db = new sqlite3.Database('./daytime.db', (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the database.');
-
-  db.run('CREATE TABLE table1(name day time)');
-  
-});
- */
-
 
 async function main() {
   const app = await dasha.deploy("./app");
