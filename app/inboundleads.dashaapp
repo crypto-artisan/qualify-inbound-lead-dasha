@@ -11,7 +11,7 @@
       "common-numbers"
     ],
     "customIntents": {
-      "file": "intents.json"
+      "file": "data.json"
     }
   },
   "nlg": {
@@ -19,5 +19,5 @@
     "file": "phrasemap.json",
     "signatureFile": "phrasemap.json"
   },
-  "name": "receptionist-demo"
+  "name": "inbound-leads"
 }
