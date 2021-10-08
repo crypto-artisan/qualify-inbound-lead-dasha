@@ -1,6 +1,6 @@
 # How to start the demo app
 
-This is a demo app created for Order Solutions by Arthur Grishkevich. The purpose of the app is to demonstrate the ability of Dasha AI Platform to be used to place pick up orders for food. 
+This demo app calls an inbound lead back and asks a few qualifying questions. 
 
 
 2. Create or log into your account using the Dasha CLI tool:
