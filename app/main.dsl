@@ -1,3 +1,5 @@
+import "commonReactions/all.dsl";
+
 /**
 Initialize the variables. Named Entities are stored as data arrays which is why we are initializing the variables as data arrays. 
 */
@@ -7,11 +9,12 @@ context
     input phone: string;
     input name: string = "";
 
-    software: string = "";
-    invoices: string = "";
-    lead_source: string = "";
+    output software: string = "";
+    output invoices: string = "";
+    output lead_source: string = "";
     calltime: string = "";
     callday: string = "";
+    output calltimeday: string ="";
     callback: string = "";
     
     visitedNodeTime: boolean = false;
@@ -29,8 +32,9 @@ start node root
         #preparePhrase("greeting", {name:$name}); 
         #connectSafe($phone);
         // Wait for 5 seconds or until speech is detected.
-        #waitForSpeech(5000);
-        #sayText("Hi " + $name + " this is Dasha with Acme Software. I just received a request for a demo from you. Do you have two minutes now?");
+        #waitForSpeech(1000);
+        #sayText("Hi " + $name + " this is Dasha with ACME. Thank you so much for reaching out to us on our website.");
+        #sayText("Is it okay if I ask you a few questions?");
         wait*;
     }
     transitions
@@ -44,11 +48,11 @@ node question_1
 {
     do 
     {
-        if ($visitedNodeQuestion1==false) #sayText("Great! I will book you in for a discovery call with an account executive but first, I'll have to ask you a couple of questions . Question 1 - are you using any other software at the moment that solve for invoicing?"); 
-        else #sayText("Going back to the question 1 - are you using any other software at the moment that solve for invoicing?"); 
+        if ($visitedNodeQuestion1==false) 
+        #sayText("Great! Are you using any invoicing software already?");
+        else #sayText("Going back to the question 1. Are you using any invoicing software already?"); 
         set $visitedNodeQuestion1=true;
         wait *;
-    wait*;
     }
     transitions
     {
@@ -70,9 +74,10 @@ node question_1_a
     }
     onexit
     {
-        question_2: do {
+        question_2: do 
+        {
         set $software = #messageGetData("software", { value: true })[0]?.value??"";
-       }
+        }
     }
 }
 
@@ -89,9 +94,10 @@ node question_2
     }
     onexit
     {
-        question_3: do {
+        question_3: do 
+        {
         set $invoices = #messageGetData("numberword", { value: true })[0]?.value??"";
-       }
+        }
     }
 }
 
@@ -108,9 +114,10 @@ node question_3
     }
     onexit
     {
-        time: do {
+        time: do 
+        {
         set $lead_source = #messageGetData("channel", { value: true })[0]?.value??"";
-       }
+        }
     }
 }
 
@@ -119,7 +126,8 @@ node time
 {
     do 
     {
-        if ($visitedNodeTime == false) #sayText("Great, thank you for your replies. Now, let's find a time to meet. When are you available for a 30 minute call this week?"); 
+        if ($visitedNodeTime == false) 
+        #sayText("Great, thank you for your replies. Now, let's find a time to meet. When are you available for a 30 minute call this week?"); 
         else #sayText("Let's try this again. What time can you meet with the A. E. this week?"); 
         set $visitedNodeTime=true;
         wait *;
@@ -134,7 +142,6 @@ node time
     {
         set $callday = #messageGetData("callday", { value: true })[0]?.value??"";
         set $calltime = #messageGetData("numberword", { value: true })[0]?.value??"";
-
     }
     }
 }
@@ -143,7 +150,8 @@ node time_confirm
 {
     do
     {
-        #sayText("Perfect. Let's confirm, you can take a call on " + $callday + " at " +$calltime + " is that right?");
+        #sayText("Perfect. Let's confirm, you can take a call on " + $callday + " at " + $calltime + " is that right?");
+        set $calltimeday = $callday + " " + $calltime;
         wait *;
     }
      transitions 
@@ -182,7 +190,8 @@ node call_back
     }
     onexit
     {
-        callback_confirm: do 
+        callback_confirm: 
+        do 
         {
         set $callback = #messageGetData("callback", { value: true })[0]?.value??"";
         }
@@ -223,16 +232,16 @@ digression connect_me
     }
 }
 
-
-
 digression how_do 
 {
     conditions {on #messageHasIntent("how_do");}
     do 
     {
-        #sayText("I'm well, thank you!");
+        #sayText("I'm well, thank you!", repeatMode: "ignore");
+        #repeat();
         return;
     }
+
 }
 
 digression transfer_me 
